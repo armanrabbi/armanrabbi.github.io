@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img{
+            height: 200px;
+            border: 8px solid #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0,0, 0.5);
+        }
+        .fixed{
+            position: fixed;
+            bottom: 50px;
+            right: 50px;
+        }
+        .absolute{
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+        .parent{
+            position: relative;
+            margin: 100px;
+            background-color: blueviolet;
+            width: 500px;
+            height: 300px;
+        }
+        .h{
+            background-color: lightblue;
+            text-align: center;
+            position: sticky;
+            top: 10px;
+            z-index: 1;
+        }
+        body{
+            height: 150vh;
+        }
+
+    </style>
+</head>
+<body>
+    <h3 class="h"> This is a Sticky heading.</h3>
+    <img class="img fixed" src="sajek.jpeg" alt="sajek" >
+    <div class="parent">
+        <img class="img absolute" src="sajek.jpeg" alt="sajek" >
+    </div>
+    
+</body>
+</html>

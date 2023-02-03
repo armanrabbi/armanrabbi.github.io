@@ -1,0 +1,22 @@
+.btn {
+    margin: 20px;
+    width: 200px;
+    height: 80px;
+    font-size: 20px;
+    
+    border: none;
+    color: white;
+    font-weight: bold;
+
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.btn:hover{
+    box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5)
+}
+
+.tomato{
+    background-color: tomato;
+}
+.dblue{
+    background-color: dodgerblue;
+}
