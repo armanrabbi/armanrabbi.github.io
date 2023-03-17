@@ -22,18 +22,73 @@
         }
 
     </style>
+     <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+  integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
 </head>
 <body>
-    <h2>My practices </h2>  
-    <ul>
-        <li><a href="box.html">Box</a></li>
-        <li> <a href="boxModel.html">BoxModel</a></li>
-        <li> <a href="bPractice.html">Bpractice</a></li>
-        <li><a href="gallary.html">Gallary</a></li>
-        <li> <a href="monday.html">Monday</a></li>
-        <li> <a href="poem.html">Poem</a></li>
-        <li><a href="position.html">Position</a></li>
-    </ul>
-
+    <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+              <img style="height: 30px ;" alt="Brand" src="images/pizzaHut.png">
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">About Us<span class="sr-only">(current)</span></a></li>
+              <li><a href="#">Link</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">My Projects<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="box-click">Box</a></li>
+                    <li> <a href="#" class="boxmodel-click">BoxModel</a></li>
+                    <li> <a href="#" class="bpratice-click" >Bpractice</a></li>
+                    <li><a href="#" class="gallary-click">Gallary</a></li>
+                    <li> <a href="#" class="monday-click">Monday</a></li>
+                    <li> <a href="#" class="poem-click">Poem</a></li>
+                    <li><a href="#" class="position-click">Position</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="https://armanrabbi.github.io/bootstrap3/" target="_blank">Bootstrap3</a></li> 
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="contents"></div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+    </script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous">
+</script>
+<script>
+    $(".box-click").click(function(){
+        $(".contents").load("box.html");
+    });
+    $(".boxmodel-click").click(function(){
+        $(".contents").load("boxModel.html");
+    });
+    $(".bpratice-click").click(function(){
+        $(".contents").load("bPractice.html");
+    });
+    $(".gallary-click").click(function(){
+        $(".contents").load("gallary.html");
+    });
+    $(".monday-click").click(function(){
+        $(".contents").load("monday.html");
+    });
+    $(".poem-click").click(function(){
+        $(".contents").load("poem.html");
+    });
+    $(".position-click").click(function(){
+        $(".contents").load("position.html");
+    });
+</script>
 </body>
 </html>
