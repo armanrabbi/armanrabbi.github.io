@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PuzzleGame</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <Style>
+        #contanier {
+            width: 850px;
+            border: 2px solid black;
+            border-radius: 20px;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        #pieceContanier{
+            width: 408px;
+            height: 408px;
+            border: 1px solid black;
+            float: left;
+            text-align: center;
+            font-size: 30px;
+            line-height: 400px;
+            position: relative;
+        }
+        #puzzleContanier{
+            width: 408px;
+            height: 408px;
+            border: 1px solid black;
+            float: right;
+        }
+        ul{
+            list-style: none;
+            text-align: center;
+        }
+        ul button{
+            width: 100px;
+            border: 1px solid black;
+            font-size: 20px;
+            border-radius:5px;
+            padding: 5px; 
+            margin-top: 10px;
+        }
+        #btnreset{
+            display: none;
+        } 
+         .piece{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            float: left;
+            background-image: url("/jpg.jpeg");
+            background-repeat: no-repeat;
+        } 
+    </Style>
+    <script>
+        $(document).ready(function(){
+            var pieces= creatpieces(true);
+            // var rows = 4, columns = 4;
+            // var pieces="";
+            // for(var i=0, top=0, order=0; i<rows; i++, top-=100)
+            // {
+            //     for (var j=0, left=0; j<columns;j++,left-=100,order++)
+            //     {
+            //         pieces+= "<div style='background-position:" 
+            //         + left + "px " + top + "px;' class='piece'data-order=" + order +"></div>";
+            //     }
+            // }
+            $("#puzzleContanier").html(pieces);
+            $("#btnstart").click(function(){
+                var pieces= $("#puzzleContanier div");
+                pieces.each(function(){
+                    var leftPosition= 
+                    Math.floor(Math.random()*290+0)+ "px";
+                    var topPosition= 
+                    Math.floor(Math.random()*290+0)+ "px";
+                    $(this).addClass("draggablePiece")
+                    .css({
+                        position:"absolute",
+                        left: leftPosition,
+                        top:topPosition
+                    })
+                    $("#pieceContanier").append($(this));
+                });
+                var emptyString= creatpieces(false)
+                // for(var i=0; i<rows; i++)
+                // {
+                //     for (var j=0; j<columns;j++)
+                //     {
+                //         emptyString+= "<div style= 'background-image:none' class='piece droppableSpace'></div>";
+                //     }
+                // }
+                $("#puzzleContanier").html(emptyString);
+                $(this).hide();
+                $("#btnreset").show()
+                implementLogic()
+            });
+            $("#btnreset").click(function(){
+                var newPieces = creatpieces(true);
+                $("#puzzleContanier").html(newPieces);
+                $(this).hide();
+                $("#btnstart").show();
+                $("#pieceContanier").empty();
+            });
+            function creatpieces(withImage)
+            {
+                var rows = 4, columns = 4;
+                var pieces="";
+                for(var i=0, top=0, order=0; i<rows; i++, top-=100)
+                {
+                    for (var j=0, left=0; j<columns;j++,left-=100,order++)
+                    {  
+                        if(withImage)
+                     
+                        {
+                         pieces+= "<div style='background-position:" 
+                         + left + "px " + top + "px;' class='piece'data-order=" + order +"></div>";
+                        }
+                        else
+                        {
+                            pieces+= "<div style= 'background-image:none' class='piece droppableSpace'></div>";
+                        }
+                    }  
+                }
+                return pieces;
+            }
+            function  checkIfPuzzleSolved(){
+                if($("#puzzleContanier .droppedPiece").length != 16)
+                {
+                    return false;
+                }
+                for(var k=0; k<16; k++)
+                {
+                    var item = $ ("#puzzleContanier .droppedPiece:eq(" + k +")");
+                    var order = item.data("order");
+                    if(k != order){
+                        $("#pieceContanier").text("Ouch! Try Again");
+                        return false;
+                    }
+                }
+                $("pieceContanier").text("Wow! You are Win");
+                return true;
+            }
+            function implementLogic(){
+                $(".draggablePiece").draggable({
+                    revert: "invalid",
+                    start: function(){
+                        if($(this).hasClass("droppedPiece")){
+                            $(this).removeClass("droppedPiece");
+                            $(this).parent().removeClass("piecePresent");
+                        }
+                    }
+                });
+                $(".droppableSpace").droppable({
+                    hoverClass:"ui-state-highlight",
+                    accept: function(){
+                        return !$(this).hasClass("piecePresent")
+                    },
+                    drop:function(event,ui)
+                    {
+                        var draggableElement= ui.draggable;
+                        var droppedOn = $(this);
+                        droppedOn.addClass("piecePresent");
+                        $(draggableElement)
+                            .addClass("droppedPiece")
+                            .css({
+                                top:0,
+                                left:0,
+                                position:"relative"
+                            }).appendTo(droppedOn);
+                            checkIfPuzzleSolved();
+                    }
+                });
+               
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="contanier">
+        <div id="pieceContanier"></div>
+        <div id="puzzleContanier"></div>
+        <ul id="button">
+            <li><button id="btnstart">Start</button></li>
+            <li><button id="btnreset">Reset</button></li>
+        </ul>
+    </div>
+</body>
+</html>

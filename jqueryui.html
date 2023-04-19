@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Sortable - Display as grid</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+        .container{
+              width: 400px;
+              height: 300px;
+              border-color: 2px solid black;
+              margin: 10px auto;
+              padding: 10px;
+              border-radius: 20px;
+              background-color: black;
+
+          }
+        #sortable 
+          { 
+              list-style-type: none; 
+              margin: 0; 
+              padding: 0; 
+              width: 400px;
+          }
+      #sortable li 
+          { 
+              margin: 1px 2px 2px 0; 
+              padding: 8px; 
+              float: left;
+              width: 80px;
+              height: 70px; 
+              font-size: 4em;
+              text-align: center; 
+      }
+      .background-color{
+        background-color:aqua;
+
+      }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  </script>
+</head>
+<body>
+ <div class="container">
+  <ul id="sortable">
+    <li class="background-color">1</li>
+    <li class="ui-state-default">2</li>
+    <li class="ui-state-default">3</li>
+    <li class="ui-state-default">4</li>
+    <li class="ui-state-default">5</li>
+    <li class="ui-state-default">6</li>
+    <li class="ui-state-default">7</li>
+    <li class="ui-state-default">8</li>
+    <li class="ui-state-default">9</li>
+    <li class="ui-state-default">10</li>
+    <li class="ui-state-default">11</li>
+    <li class="ui-state-default">12</li>
+  </ul>
+ </div>
+
+</body>
+</html>
